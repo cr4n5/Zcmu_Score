@@ -4,11 +4,12 @@
         "password": "xxxxxxxx"
     },
     "smtp_email": {
-        "user": "",
-        "password": "",
-        "host": "",
+        "user": "..@qq.com",
+        "password": "xxxxxxx",
+        "host": "smtp.qq.com",
         "email_to": [
-            ""
+            "..@qq.com",
+            "..@163.com"
         ]
     },
     "time": {
