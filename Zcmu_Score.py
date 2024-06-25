@@ -7,7 +7,7 @@ import logging
 import os
 
 '''
-使用之前先在config填写账号密码，邮箱SMTP服务账号授权码服务器地址，接收方邮箱
+使用之前先在config填写账号密码，邮箱SMTP服务账号授权码服务器地址，接收方邮箱，学年学期。例如2024.6.25填写为2023学年，12；2022.12.23填写为2022学年，3。
 '''
 # 配置日志
 logging.basicConfig(filename='score.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -78,7 +78,7 @@ def send_email(content):
 
 
 def query_scores():
-    cj_url = "https://jwmk.zcmu.edu.cn/jwglxt/cjjfgl/xkjsjfsqsh_cxKcxxView.html?doType=query&xnm=2023&xqm=12&queryModel.showCount=999&queryModel.pageSize=999"
+    cj_url = "https://jwmk.zcmu.edu.cn/jwglxt/cjjfgl/xkjsjfsqsh_cxKcxxView.html?doType=query&xnm={}&xqm={}&queryModel.showCount=999&queryModel.pageSize=999".format(config["time"]["XueNian"],config["time"]["XueQi"])
     global session
     login()
 
