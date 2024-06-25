@@ -1,0 +1,14 @@
+{
+    "login": {
+        "username": "2019xxxxxx",
+        "password": "xxxxxxxx"
+    },
+    "smtp_email": {
+        "user": "",
+        "password": "",
+        "host": "",
+        "email_to": [
+            ""
+        ]
+    }
+}
