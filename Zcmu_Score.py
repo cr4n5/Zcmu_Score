@@ -3,12 +3,8 @@ import time
 import json
 import lxml.etree
 import yagmail
-import logging
 import os
-
-'''
-使用之前先在config填写账号密码，邮箱SMTP服务账号授权码服务器地址，接收方邮箱，学年学期。例如2024.6.25填写为2023学年，12；2022.12.23填写为2022学年，3。
-'''
+import logging
 # 配置日志
 logging.basicConfig(filename='score.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -119,9 +115,13 @@ def query_scores():
         logging.error(e)
         send_email(str(e))
 
-
-query_scores()
-session = requests.Session()
-query_scores()
-send_email("重新启动失败")
+error_time=0
+while True:
+    query_scores()
+    if time.time()-error_time<60*2 and error_time!=0:
+        send_email("程序运行或服务器错误，已停止运行")
+        logging.error("程序运行或服务器错误，已停止运行")
+        break
+    error_time=time.time()
+    
     
