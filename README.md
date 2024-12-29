@@ -4,20 +4,13 @@
 
 ## 使用
 
-1.Git clone
+1. Git clone
 
 ```shell
 git clone https://github.com/cr4n5/Zcmu_Score.git
 ```
 
-2.安装依赖
-
-```shell
-pip install requests
-pip install yagmail
-```
-
-3.修改配置文件
+2. 修改配置文件
 
 在`config.json`中填写学号、密码、邮箱smtp服务器、邮箱账号、邮箱授权码、接收邮箱、学年、学期。例如：2024.6.25填写为2023学年，12；2022.12.23填写为2022学年，3。第一学期为3，第二学期为12
 
@@ -43,9 +36,19 @@ pip install yagmail
 }
 ```
 
-4.运行
+3. 运行
+
+- Docker
+
+```shell
+docker build -t zcmu_score .
+docker run -d zcmu_score
+```
+
+- Python
 
 ```shell
 pwd #/path/to/Zcmu_Score
+pip install -r requirements.txt
 python Zcmu_Score.py
 ```

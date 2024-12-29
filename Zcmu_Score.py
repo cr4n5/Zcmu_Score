@@ -20,15 +20,15 @@ def login():
     login_url = "https://cas.paas.zcmu.edu.cn/cas/login?service=https%3A%2F%2Fxjyt.zcmu.edu.cn%3A443%2Fcas%2Flogin%2Fcas%2Flogin%3Frzxx%3Dsupwisdom%26service%3Dhttps%253A%252F%252Fpuser.zcmu.edu.cn%252Fhome-page"
 
 
-    session.headers.update({
-                    "Accept": "text/html, application/xhtml+xml, application/xml; q=0.9, */*; q=0.8",
-                    "Accept-Language": "zh_CN",
-                    "Connection": "keep-alive",
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363",
-                }
-            )
+    # session.headers.update({
+    #                 "Accept": "text/html, application/xhtml+xml, application/xml; q=0.9, */*; q=0.8",
+    #                 "Accept-Language": "zh_CN",
+    #                 "Connection": "keep-alive",
+    #                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363",
+    #             }
+    #         )
 
-    session.cookies.update({"Cookie": "SESSION=8b3b1b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b; Hm_lvt_d605d8df6bf5ca8a54fe078683196518={}; Hm_lpvt_d605d8df6bf5ca8a54fe078683196518={}".format(str(int(time.time())-10), str(int(time.time()))),})   
+    # session.cookies.update({"Cookie": "SESSION=8b3b1b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b; Hm_lvt_d605d8df6bf5ca8a54fe078683196518={}; Hm_lpvt_d605d8df6bf5ca8a54fe078683196518={}".format(str(int(time.time())-10), str(int(time.time()))),})   
 
     data = {
         "username": config["login"]["username"],
@@ -46,9 +46,7 @@ def login():
     tree = lxml.etree.HTML(response.text)
     execution = tree.xpath('//input[@name="execution"]/@value')[0]
     data["execution"] = execution
-    response = session.post(login_url, data=data, allow_redirects=False)
-    request_url = response.headers["Location"]
-    response = session.get(request_url, allow_redirects=True)
+    response = session.post(login_url, data=data)
 
 
 def send_email(content):
@@ -109,6 +107,10 @@ def query_scores():
                             json.dump(kc, f, ensure_ascii=False, indent=4)
                     print(i["kcmc"],i["cj"],"查询时间：",time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
                     logging.info(f"{i['kcmc']} {i['cj']}")
+                # 如果没有成绩
+                if len(response["items"])==0:
+                    print("无成绩","时间：",time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+                    logging.info("无成绩")
             time.sleep(60)
     except Exception as e:
         print(e)
