@@ -19,17 +19,6 @@ def login():
     url="https://cas.paas.zcmu.edu.cn/cas/login?service=https%3A%2F%2Fxjyt.zcmu.edu.cn%3A443%2Fcas%2Flogin%2Fcas%2Flogin%3Frzxx%3Dsupwisdom%26service%3Dhttps%253A%252F%252Fpuser.zcmu.edu.cn%252Fhome-page"
     login_url = "https://cas.paas.zcmu.edu.cn/cas/login?service=https%3A%2F%2Fxjyt.zcmu.edu.cn%3A443%2Fcas%2Flogin%2Fcas%2Flogin%3Frzxx%3Dsupwisdom%26service%3Dhttps%253A%252F%252Fpuser.zcmu.edu.cn%252Fhome-page"
 
-
-    # session.headers.update({
-    #                 "Accept": "text/html, application/xhtml+xml, application/xml; q=0.9, */*; q=0.8",
-    #                 "Accept-Language": "zh_CN",
-    #                 "Connection": "keep-alive",
-    #                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363",
-    #             }
-    #         )
-
-    # session.cookies.update({"Cookie": "SESSION=8b3b1b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b; Hm_lvt_d605d8df6bf5ca8a54fe078683196518={}; Hm_lpvt_d605d8df6bf5ca8a54fe078683196518={}".format(str(int(time.time())-10), str(int(time.time()))),})   
-
     data = {
         "username": config["login"]["username"],
         "password": config["login"]["password"],
