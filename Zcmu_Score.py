@@ -8,8 +8,6 @@ import logging
 # 配置日志
 logging.basicConfig(filename='score.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-session = requests.Session()
-
 with open('config.json', 'r', encoding='utf-8') as f:
     config = json.load(f)
 
@@ -63,6 +61,7 @@ def send_email(content):
 def query_scores():
     cj_url = "https://jwmk.zcmu.edu.cn/jwglxt/cjjfgl/xkjsjfsqsh_cxKcxxView.html?doType=query&xnm={}&xqm={}&queryModel.showCount=999&queryModel.pageSize=999".format(config["time"]["XueNian"],config["time"]["XueQi"])
     global session
+    session = requests.Session()
     login()
 
     kc={}
